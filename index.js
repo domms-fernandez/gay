@@ -8,21 +8,22 @@ button.addEventListener("click", () => {
 //RUUUNNNN
 button.addEventListener("mouseover", (e) => {
   let buttonPos = button.getBoundingClientRect();
+
+  let pointA = Math.round(buttonPos.right * 0.5); //yYDN
+  let pointB = Math.round(buttonPos.bottom * 0.5);
   
-  let mouseX = e.clientX - buttonPos.left;
-  let mouseY = e.clientY - buttonPos.top;
+  let mouseX = e.clientX - buttonPos.left - pointA;
+  let mouseY = e.clientY - buttonPos.top - pointB;
 
   let slope = mouseX/mouseY;
   let invSlope = mouseY/mouseX;
 
-  let pointA = 150; //yYDN
-  let pointB = 200;
   if(mouseX < 0) {pointA *= -1}
   if(mouseY < 0) {pointB *= -1}
   pointA = Math.round(pointA * slope);
   pointB = Math.round(pointB * invSlope);
 
-  if((40000 + pointA**2) < (pointB**2 + 22500)) {
+  if((buttonPos.right**2 + pointA**2) < (pointB**2 + buttonPos.bottom**2)) {
     button.style.left = (buttonPos.left - mouseX) + "px";
     button.style.top = (buttonPos.top - pointA) + "px";
   } else {
