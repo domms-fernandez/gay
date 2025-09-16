@@ -1,6 +1,10 @@
 <head>
   <title>Gay</title>
   <style>
+    body {
+      overflow: hidden;
+    }
+    
     * {
       position: absolute;
       margin: 0;
@@ -11,7 +15,7 @@
 
     button {
       width: 300px;
-      height: 300px;
+      height: 400px;
       top: 50%;
       right: 50%;
       transform: translate(50%, -50%);
@@ -25,9 +29,5 @@
 <body>
   <button type="button">gay button</button>
   <img src="/gay/angery.jpg">
-  <script>
-    document.querySelector("button").addEventListener("click", () => {
-       document.querySelector("img").style.display = "block";
-    });
-  </script>
+  <script src="/gay/index.js"></script>
 </body>
