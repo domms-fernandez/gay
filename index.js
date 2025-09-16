@@ -22,7 +22,7 @@ button.addEventListener("mouseover", (e) => {
   pointA = Math.round(pointA * slope);
   pointB = Math.round(pointB * invSlope);
 
-  if((22500 + pointA**2) < (pointB**2 + 40000)) {
+  if((40000 + pointA**2) < (pointB**2 + 22500)) {
     button.style.left = (buttonPos.left - mouseX) + "px";
     button.style.top = (buttonPos.top - pointA) + "px";
   } else {
