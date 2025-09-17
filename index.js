@@ -12,8 +12,8 @@ button.addEventListener("click", () => {
 button.addEventListener("mousemove", (e) => {
   let buttonPos = button.getBoundingClientRect(); //x and y of button
 
-  let pointA = {x: Math.round(button.clientWidth * 0.5),  y: 0}; //the x value if it intercepts the side lines,
-  let pointB = {y: Math.round(button.clientHeight * 0.5), x: 0}; //and the y value for the top and bottom lines.
+  let pointA = {x: Math.round(button.clientWidth * 0.5) + 1,  y: 0}; //the x value if it intercepts the side lines,
+  let pointB = {y: Math.round(button.clientHeight * 0.5) + 1, x: 0}; //and the y value for the top and bottom lines.
                                                                  //incidently 1/2 width/height of the button
   
   //mouse X and Y relative to the center point of the button, which is (0, 0)
@@ -34,7 +34,7 @@ button.addEventListener("mousemove", (e) => {
     button.style.left = buttonPos.left - (pointA.x - mouseX) + 1;
     button.style.top = buttonPos.top - (pointA.y - mouseY) + 1;
   } else {
-    button.style.left = buttonPos.left - (pointB.x - mouseX) + 1;
-    button.style.top = buttonPos.top - (pointB.y - mouseY) + 1;
+    button.style.left = buttonPos.left - (pointB.x - mouseX);
+    button.style.top = buttonPos.top - (pointB.y - mouseY);
   }
 });
