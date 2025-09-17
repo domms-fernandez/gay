@@ -26,14 +26,12 @@ button.addEventListener("mouseover", (e) => {
   pointA.y = Math.round(slope * pointA.x);
   pointB.x = Math.round(pointB.y / slope);
 
-  
+  //pythagoras mothafucka!
   if((pointA.x**2 + pointA.y**2) < (pointB.x**2 + pointB.y**2)) {
-    /*button.style.left =  + "px";
-    button.style.top =  + "px";*/
-    alert("(" + pointA.x + ", " + pointA.y + ")");
+    button.style.left = buttonPos.left - (mouseX - pointA.x) + "px";
+    button.style.top = buttonPos.top - (mouseY - pointA.y) + "px";
   } else {
-    /*button.style.left =  + "px";
-    button.style.top =  + "px";*/
-    alert("(" + pointB.x + ", " + pointB.y + ")");
+    button.style.left = buttonPos.left - (mouseX - pointB.x) + "px";
+    button.style.top = buttonPos.top - (mouseY - pointB.y) + "px";
   }
 });
