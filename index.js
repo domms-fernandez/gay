@@ -31,10 +31,10 @@ button.addEventListener("mousemove", (e) => {
 
   //pythagoras mothafucka!
   if((pointA.x**2 + pointA.y**2) < (pointB.x**2 + pointB.y**2)) {
-    button.style.left = buttonPos.left - (pointA.x - mouseX) + "px";
-    button.style.top = buttonPos.top - (pointA.y - mouseY) + "px";
+    button.style.left = buttonPos.left - (pointA.x - mouseX) + 1;
+    button.style.top = buttonPos.top - (pointA.y - mouseY) + 1;
   } else {
-    button.style.left = buttonPos.left - (pointB.x - mouseX) + "px";
-    button.style.top = buttonPos.top - (pointB.y - mouseY) + "px";
+    button.style.left = buttonPos.left - (pointB.x - mouseX) + 1;
+    button.style.top = buttonPos.top - (pointB.y - mouseY) + 1;
   }
 });
