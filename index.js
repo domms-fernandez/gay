@@ -12,33 +12,34 @@ button.addEventListener("click", () => {
 
 //RUUUNNNN
 window.addEventListener("mousemove", (e) => {
-  if (button.matches(":hover")) {break;}
+  if (button.matches(":hover")) {
   
-  let buttonPos = button.getBoundingClientRect(); //x and y of button
+    let buttonPos = button.getBoundingClientRect(); //x and y of button
 
-  let pointA = {x: Math.round(button.clientWidth * 0.5),  y: 0}; //the x value if it intercepts the side lines,
-  let pointB = {y: Math.round(button.clientHeight * 0.5), x: 0}; //and the y value for the top and bottom lines.
+    let pointA = {x: Math.round(button.clientWidth * 0.5),  y: 0}; //the x value if it intercepts the side lines,
+    let pointB = {y: Math.round(button.clientHeight * 0.5), x: 0}; //and the y value for the top and bottom lines.
                                                                  //incidently 1/2 width/height of the button
   
-  //mouse X and Y relative to the center point of the button, which is (0, 0)
-  let mouseX = e.clientX - buttonPos.left - pointA.x;
-  let mouseY = e.clientY - buttonPos.top - pointB.y;
+    //mouse X and Y relative to the center point of the button, which is (0, 0)
+    let mouseX = e.clientX - buttonPos.left - pointA.x;
+    let mouseY = e.clientY - buttonPos.top - pointB.y;
 
-  let slope = mouseY/mouseX;
+    let slope = mouseY/mouseX;
 
-  if(mouseX < 0) {pointA.x *= -1;} //calculate intersection on the side of the button that is moving
-  if(mouseY < 0) {pointB.y *= -1;} //away from the mouse, so it doesn't clip across the screen
+    if(mouseX < 0) {pointA.x *= -1;} //calculate intersection on the side of the button that is moving
+    if(mouseY < 0) {pointB.y *= -1;} //away from the mouse, so it doesn't clip across the screen
 
-  //complete points of intersection
-  pointA.y = Math.round(slope * pointA.x);
-  pointB.x = Math.round(pointB.y / slope);
+    //complete points of intersection
+    pointA.y = Math.round(slope * pointA.x);
+    pointB.x = Math.round(pointB.y / slope);
 
-  //pythagoras mothafucka!
-  if((pointA.x**2 + pointA.y**2) < (pointB.x**2 + pointB.y**2)) {
-    button.style.left = buttonPos.left - (mouseX - pointA.x) + "px";
-    button.style.top = buttonPos.top - (mouseY - pointA.y) + "px";
-  } else {
-    button.style.left = buttonPos.left - (mouseX - pointB.x) + "px";
-    button.style.top = buttonPos.top - (mouseY - pointB.y) + "px";
+    //pythagoras mothafucka!
+    if((pointA.x**2 + pointA.y**2) < (pointB.x**2 + pointB.y**2)) {
+      button.style.left = buttonPos.left - (mouseX - pointA.x) + "px";
+      button.style.top = buttonPos.top - (mouseY - pointA.y) + "px";
+    } else {
+      button.style.left = buttonPos.left - (mouseX - pointB.x) + "px";
+      button.style.top = buttonPos.top - (mouseY - pointB.y) + "px";
+    }
   }
 });
