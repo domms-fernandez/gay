@@ -1,11 +1,12 @@
 let img = document.querySelector("img");
 let button = document.querySelector("button");
+let scream = new Audio("/gay/howie.mp3");
 
 //evil jumpscare of despair
 button.addEventListener("click", () => {
   img.style.display = "block";
   setTimeout(Math.floor(Math.random() * 2001), () => {
-    new Audio("/gay/howie.mp3").play().then(() => {img.style.display = "hidden";});
+    scream.play().then(() => {img.style.display = "hidden";});
   });
 });
 
