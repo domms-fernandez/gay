@@ -1,33 +1,39 @@
-//evil jumpscare of dispair
 let button = document.querySelector("button");
 
+//evil jumpscare of despair
 button.addEventListener("click", () => {
   document.querySelector("img").style.display = "block";
 });
 
 //RUUUNNNN
 button.addEventListener("mouseover", (e) => {
-  let buttonPos = button.getBoundingClientRect();
+  let buttonPos = button.getBoundingClientRect(); //x and y of button
 
-  let pointA = Math.round(buttonPos.right * 0.5); //yYDN
-  let pointB = Math.round(buttonPos.bottom * 0.5);
+  let pointA = {x: Math.round(button.clientWidth * 0.5),  y: 0}; //the x value if it intercepts the side lines,
+  let pointB = {y: Math.round(button.clientHeight * 0.5), x: 0}; //and the y value for the top and bottom lines.
+                                                                 //incidently 1/2 width/height of the button
   
-  let mouseX = e.clientX - buttonPos.left - pointA;
-  let mouseY = e.clientY - buttonPos.top - pointB;
+  //mouse X and Y relative to the center point of the button, which is (0, 0)
+  let mouseX = e.clientX - buttonPos.left - pointA.x;
+  let mouseY = e.clientY - buttonPos.top - pointB.y;
 
-  let slope = mouseX/mouseY;
-  let invSlope = mouseY/mouseX;
+  let slope = mouseY/mouseX;
 
-  if(mouseX < 0) {pointA *= -1}
-  if(mouseY < 0) {pointB *= -1}
-  pointA = Math.round(pointA * slope);
-  pointB = Math.round(pointB * invSlope);
+  if(mouseX < 0) {pointA.x *= -1;} //calculate intersection on the side of the button that is moving
+  if(mouseY < 0) {pointB.y *= -1;} //away from the mouse, so it doesn't clip across the screen
 
-  if((buttonPos.right**2 + pointA**2) < (pointB**2 + buttonPos.bottom**2)) {
-    button.style.left = (buttonPos.left - mouseX) + "px";
-    button.style.top = (buttonPos.top - pointA) + "px";
+  //complete points of intersection
+  pointA.y = Math.round(slope * pointA.x);
+  pointB.x = Math.round(pointB.y / slope);
+
+  
+  if((pointA.x**2 + pointA.y**2) < (pointB.x**2 + pointB.y**2)) {
+    /*button.style.left =  + "px";
+    button.style.top =  + "px";*/
+    alert("(" + pointA.x + ", " + pointA.y + ")");
   } else {
-    button.style.left = (buttonPos.left - pointB) + "px";
-    button.style.top = (buttonPos.top - mouseY) + "px";
+    /*button.style.left =  + "px";
+    button.style.top =  + "px";*/
+    alert("(" + pointB.x + ", " + pointB.y + ")");
   }
 });
