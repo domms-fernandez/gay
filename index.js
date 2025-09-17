@@ -12,7 +12,7 @@ button.addEventListener("click", () => {
 
 //RUUUNNNN
 window.addEventListener("mousemove", (e) => {
-  if (button.matches(":hover") {break;}
+  if (button.matches(":hover")) {break;}
   
   let buttonPos = button.getBoundingClientRect(); //x and y of button
 
