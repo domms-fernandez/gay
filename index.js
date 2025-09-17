@@ -1,15 +1,18 @@
+let img = document.querySelector("img");
 let button = document.querySelector("button");
 
 //evil jumpscare of despair
 button.addEventListener("click", () => {
-  document.querySelector("img").style.display = "block";
+  img.style.display = "block";
   setTimeout(Math.floor(Math.random() * 2001), () => {
-    new Audio("/gay/howie.mp3").play();
+    new Audio("/gay/howie.mp3").play().then(() => {img.style.display = "hidden";});
   });
 });
 
 //RUUUNNNN
-button.addEventListener("mouseover", (e) => {
+window.addEventListener("mousemove", (e) => {
+  if (button.matches(":hover") {break;}
+  
   let buttonPos = button.getBoundingClientRect(); //x and y of button
 
   let pointA = {x: Math.round(button.clientWidth * 0.5),  y: 0}; //the x value if it intercepts the side lines,
