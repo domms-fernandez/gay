@@ -3,6 +3,9 @@ let button = document.querySelector("button");
 //evil jumpscare of despair
 button.addEventListener("click", () => {
   document.querySelector("img").style.display = "block";
+  setTimeout(Math.floor(Math.random() * 2001), () => {
+    new Audio("/gay/howie.mp3").play();
+  });
 });
 
 //RUUUNNNN
