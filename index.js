@@ -6,6 +6,15 @@ let scream = new Audio("/gay/howie.mp3");
 let buttonTouched = false;
 let mousePos;
 
+function hint(text, duration) {
+  let notif = document.createElement("p");
+  notif.appendChild(document.createTextNode(text));
+  notif.style.left = mousePos.clientX;
+  notif.style.top = mousePos.clientY;
+  document.body.appendChild(notif);
+  setTimeout(() => {notif.remove();}, duration);
+}
+
 function repositionButtons() {
   let buttonPos = button.getBoundingClientRect();
   for(let i = 0; i < allButtons.length; i++) {
@@ -88,27 +97,10 @@ for(let i = 0; i < allButtons.length; i++) {
     repositionButtons();
     
     if(!buttonTouched) {
-      setTimeout(() => {
-        let notif = document.createElement("p");
-        notif.style.left = mousePos.clientX;
-        notif.style.top = mousePos.clientY;
-        notif.appendChild(document.createTextNode("Hey, don't tell anyone, but..."));
-        setTimeout(() => {
-          notif.remove();
-          notif = document.createElement("p");
-          notif.style.left = mousePos.clientX;
-          notif.style.top = mousePos.clientY;
-          notif.appendChild(document.createTextNode("...you can select the button with TAB"));
-            setTimeout(() => {
-            notif.remove();
-            notif = document.createElement("p");
-            notif.style.left = mousePos.clientX;
-            notif.style.top = mousePos.clientY;
-            notif.appendChild(document.createTextNode(";)"));
-            setTimeout(() => {notif.remove();}, 1000);
-          }, 3000);
-        }, 3000);
-      }, 10000);
+      setTimeout(() => {hint("hey. don't tell anyone but...", 3000);}, 10000);
+      setTimeout(() => {hint("...you can select the button with TAB", 3000);}, 13000);
+      setTimeout(() => {hint(";)", 1000);}, 16000);
+      
       buttonTouched = true;
     }
   });
