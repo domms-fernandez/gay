@@ -4,16 +4,18 @@ let scream = new Audio("/gay/howie.mp3");
 
 //evil jumpscare of despair
 button.addEventListener("click", () => {
+  if(img.style.display == "hidden") return;
   img.style.display = "block";
-  scream.play().then(() => {img.style.display = "hidden";});
+  scream.play();
+  setTimeout(6000, () => {img.style.display = "hidden";});
 });
 
 //RUUUNNNN
 button.addEventListener("mousemove", (e) => {
   let buttonPos = button.getBoundingClientRect(); //x and y of button
 
-  let pointA = {x: Math.round(button.clientWidth * 0.5),  y: 0}; //the x value if it intercepts the side lines,
-  let pointB = {y: Math.round(button.clientHeight * 0.5), x: 0}; //and the y value for the top and bottom lines.
+  let pointA = {x: Math.round(button.clientWidth * 0.5) + 4,  y: 0}; //the x value if it intercepts the side lines,
+  let pointB = {y: Math.round(button.clientHeight * 0.5) + 4, x: 0}; //and the y value for the top and bottom lines.
                                                                  //incidently 1/2 width/height of the button
   
   //mouse X and Y relative to the center point of the button, which is (0, 0)
