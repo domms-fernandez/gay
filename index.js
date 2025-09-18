@@ -1,14 +1,16 @@
 let img = document.querySelector("img");
-let button = document.querySelector("button");
+let button = document.getElementById("center");
+let allButtons = document.querySelectorAll("button");
 let scream = new Audio("/gay/howie.mp3");
 
 //evil jumpscare of despair
-button.addEventListener("click", () => {
-  if(img.style.display == "block") return;
-  img.style.display = "block";
-  scream.play();
-  setTimeout(() => {img.style.display = "none";}, 6000);
-});
+for(let i = 0; i < allButtons.length; i++) {
+  allButtons[i].addEventListener("click", () => {
+    if(img.style.display == "block") return;
+    img.style.display = "block";
+    scream.play().then(() => {img.style.display = "none";});
+  });
+}
 
 //RUUUNNNN
 button.addEventListener("mousemove", (e) => {
@@ -24,8 +26,8 @@ button.addEventListener("mousemove", (e) => {
 
   let slope = mouseY/mouseX;
 
-  if(mouseX < 0) {pointA.x *= -1;} //calculate intersection on the side of the button that is moving
-  if(mouseY < 0) {pointB.y *= -1;} //away from the mouse, so it doesn't clip across the screen
+  if(mouseX < 0) {pointA.x *= -1; pointA.x--;} //calculate intersection on the side of the button that is moving
+  if(mouseY < 0) {pointB.y *= -1; pointB.y--;} //away from the mouse, so it doesn't clip across the screen
 
   //complete points of intersection
   pointA.y = Math.round(slope * pointA.x);
