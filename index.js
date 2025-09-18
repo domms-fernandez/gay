@@ -7,7 +7,7 @@ button.addEventListener("click", () => {
   if(img.style.display == "block") return;
   img.style.display = "block";
   scream.play();
-  setTimeout(() => {img.style.display = "hidden";}, 6000);
+  setTimeout(() => {img.style.display = "none";}, 6000);
 });
 
 //RUUUNNNN
