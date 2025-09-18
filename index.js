@@ -41,27 +41,6 @@ for(let i = 0; i < allButtons.length; i++) {
 
   document.addEventListener("mousemove", (e) => {
     mousePos = e;
-    if(buttonTouched) setTimeout(() => {
-        let notif = document.createElement("p");
-        notif.style.left = e.clientX;
-        notif.style.top = e.clientY;
-        notif.appendChild(document.createTextNode("Hey, don't tell anyone, but..."));
-        setTimeout(() => {
-          notif.remove();
-          notif = document.createElement("p");
-          notif.style.left = e.clientX;
-          notif.style.top = e.clientY;
-          notif.appendChild(document.createTextNode("...you can select the button with TAB"));
-            setTimeout(() => {
-            notif.remove();
-            notif = document.createElement("p");
-            notif.style.left = e.clientX;
-            notif.style.top = e.clientY;
-            notif.appendChild(document.createTextNode(";)"));
-            setTimeout(() => {notif.remove();}, 1000);
-          }, 3000);
-        }, 3000);
-      }, 10000);
   });
 
   //RUUUNNNN
@@ -108,6 +87,29 @@ for(let i = 0; i < allButtons.length; i++) {
     }
     repositionButtons();
     
-    if(!buttonTouched) buttonTouched = true;
+    if(!buttonTouched) {
+      setTimeout(() => {
+        let notif = document.createElement("p");
+        notif.style.left = mousePos.clientX;
+        notif.style.top = mousePos.clientY;
+        notif.appendChild(document.createTextNode("Hey, don't tell anyone, but..."));
+        setTimeout(() => {
+          notif.remove();
+          notif = document.createElement("p");
+          notif.style.left = mousePos.clientX;
+          notif.style.top = mousePos.clientY;
+          notif.appendChild(document.createTextNode("...you can select the button with TAB"));
+            setTimeout(() => {
+            notif.remove();
+            notif = document.createElement("p");
+            notif.style.left = mousePos.clientX;
+            notif.style.top = mousePos.clientY;
+            notif.appendChild(document.createTextNode(";)"));
+            setTimeout(() => {notif.remove();}, 1000);
+          }, 3000);
+        }, 3000);
+      }, 10000);
+      buttonTouched = true;
+    }
   });
 }
