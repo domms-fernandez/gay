@@ -4,10 +4,10 @@ let scream = new Audio("/gay/howie.mp3");
 
 //evil jumpscare of despair
 button.addEventListener("click", () => {
-  if(img.style.display == "hidden") return;
+  if(img.style.display == "block") return;
   img.style.display = "block";
   scream.play();
-  setTimeout(6000, () => {img.style.display = "hidden";});
+  setTimeout(() => {img.style.display = "hidden";}, 6000);
 });
 
 //RUUUNNNN
