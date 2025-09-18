@@ -3,6 +3,9 @@ let button = document.getElementById("center");
 let allButtons = document.querySelectorAll("button");
 let scream = new Audio("/gay/howie.mp3");
 
+let buttonTouched = false;
+let mousePos;
+
 function repositionButtons() {
   let buttonPos = button.getBoundingClientRect();
   for(let i = 0; i < allButtons.length; i++) {
@@ -36,6 +39,30 @@ for(let i = 0; i < allButtons.length; i++) {
     setTimeout(() => {img.style.display = "none";}, 6000);
   });
 
+  document.addEventListener("mousemove", (e) => {
+    mousePos = e;
+    if(buttonTouched) setTimeout(() => {
+        let notif = document.createElement("p");
+        notif.style.left = e.clientX;
+        notif.style.top = e.clientY;
+        notif.appendChild(document.createTextNode("Hey, don't tell anyone, but..."));
+        setTimeout(() => {
+          notif.remove();
+          notif = document.createElement("p");
+          notif.style.left = e.clientX;
+          notif.style.top = e.clientY;
+          notif.appendChild(document.createTextNode("...you can select the button with TAB"));
+            setTimeout(() => {
+            notif.remove();
+            notif = document.createElement("p");
+            notif.style.left = e.clientX;
+            notif.style.top = e.clientY;
+            notif.appendChild(document.createTextNode(";)"));
+            setTimeout(() => {notif.remove();}, 1000);
+          }, 3000);
+        }, 3000);
+      }, 10000);
+  });
 
   //RUUUNNNN
   allButtons[i].addEventListener("mousemove", (e) => {
@@ -43,8 +70,7 @@ for(let i = 0; i < allButtons.length; i++) {
 
     let pointA = {x: Math.round(allButtons[i].clientWidth * 0.5) + 3,  y: 0}; //the x value if it intercepts the side lines,
     let pointB = {y: Math.round(allButtons[i].clientHeight * 0.5) + 3, x: 0}; //and the y value for the top and bottom lines.
-                                                                     //incidently 1/2 width/height of the button
-  
+                                                                              //incidently 1/2 width/height of the button
     //mouse X and Y relative to the center point of the button, which is (0, 0)
     let mouseX = e.clientX - buttonPos.left - pointA.x;
     let mouseY = e.clientY - buttonPos.top - pointB.y;
@@ -81,5 +107,7 @@ for(let i = 0; i < allButtons.length; i++) {
       button.style.top = movementTop;
     }
     repositionButtons();
+    
+    if(!buttonTouched) buttonTouched = true;
   });
 }
