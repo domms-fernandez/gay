@@ -41,8 +41,8 @@ for(let i = 0; i < allButtons.length; i++) {
   allButtons[i].addEventListener("mousemove", (e) => {
     let buttonPos = allButtons[i].getBoundingClientRect(); //x and y of button
 
-    let pointA = {x: Math.round(allButtons[i].clientWidth * 0.5) + 2,  y: 0}; //the x value if it intercepts the side lines,
-    let pointB = {y: Math.round(allButtons[i].clientHeight * 0.5) + 2, x: 0}; //and the y value for the top and bottom lines.
+    let pointA = {x: Math.round(allButtons[i].clientWidth * 0.5) + 3,  y: 0}; //the x value if it intercepts the side lines,
+    let pointB = {y: Math.round(allButtons[i].clientHeight * 0.5) + 3, x: 0}; //and the y value for the top and bottom lines.
                                                                      //incidently 1/2 width/height of the button
   
     //mouse X and Y relative to the center point of the button, which is (0, 0)
