@@ -32,7 +32,8 @@ for(let i = 0; i < allButtons.length; i++) {
   allButtons[i].addEventListener("click", () => {
     if(img.style.display == "block") return;
     img.style.display = "block";
-    scream.play().then(() => {img.style.display = "none";});
+    scream.play();
+    setTimeout(() => {img.style.display = "none";}, 6000);
   });
 
 
@@ -50,8 +51,8 @@ for(let i = 0; i < allButtons.length; i++) {
 
     let slope = mouseY/mouseX;
 
-    if(mouseX < 0) {pointA.x *= -1; pointA.x--;} //calculate intersection on the side of the button that is moving
-    if(mouseY < 0) {pointB.y *= -1; pointB.y--;} //away from the mouse, so it doesn't clip across the screen
+    if(mouseX < 0) {pointA.x *= -1; pointA.x -= 2;} //calculate intersection on the side of the button that is moving
+    if(mouseY < 0) {pointB.y *= -1; pointB.y -= 2;} //away from the mouse, so it doesn't clip across the screen
 
     //complete points of intersection
     pointA.y = Math.round(slope * pointA.x);
