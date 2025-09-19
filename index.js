@@ -4,10 +4,7 @@ let allButtons = document.querySelectorAll("button");
 let scream = new Audio("/gay/howie.mp3");
 
 let buttonTouched = false;
-
-function hint(text, duration) {
-  document.title = text;
-}
+let buttonClicked = false;
 
 function repositionButtons() {
   let buttonPos = button.getBoundingClientRect();
@@ -40,6 +37,9 @@ for(let i = 0; i < allButtons.length; i++) {
     img.style.display = "block";
     scream.play();
     setTimeout(() => {img.style.display = "none";}, 6000);
+
+    buttonClicked = true;
+    document.title = "???";
   });
 
   //RUUUNNNN
@@ -87,9 +87,24 @@ for(let i = 0; i < allButtons.length; i++) {
     repositionButtons();
     
     if(!buttonTouched) {
-      setTimeout(() => {hint("hey. don't tell anyone but...", 3000);}, 10000);
-      setTimeout(() => {hint("...you can select the button with TAB", 3000);}, 13000);
-      setTimeout(() => {hint(";)", 1000);}, 16000);
+      let delay = 10000;
+      
+      setTimeout(() => { if(!buttonClicked) document.title = "hey! up here!"; }, delay);
+      delay += 3000
+      
+      setTimeout(() => { if(!buttonClicked) document.title = "don't tell anyone else..."; }, delay);
+      delay += 3000;
+      
+      setTimeout(() => { if(!buttonClicked) document.title = "...but you can select"; }, delay);
+      delay += 3000;
+      
+      setTimeout(() => { if(!buttonClicked) document.title = "the button with TAB"; }, delay);
+      delay += 3000;
+      
+      setTimeout(() => { if(!buttonClicked) document.title = ";)"; }, delay);
+      delay += 1000;
+      
+      setTimeout(() => { if(!buttonClicked) document.title = "???"; }, delay);
       
       buttonTouched = true;
     }
