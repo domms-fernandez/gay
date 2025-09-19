@@ -4,15 +4,9 @@ let allButtons = document.querySelectorAll("button");
 let scream = new Audio("/gay/howie.mp3");
 
 let buttonTouched = false;
-let mousePos;
 
 function hint(text, duration) {
-  let notif = document.createElement("p");
-  notif.appendChild(document.createTextNode(text));
-  notif.style.left = mousePos.clientX;
-  notif.style.top = mousePos.clientY;
-  document.body.appendChild(notif);
-  setTimeout(() => {notif.remove();}, duration);
+  document.title = text;
 }
 
 function repositionButtons() {
@@ -46,10 +40,6 @@ for(let i = 0; i < allButtons.length; i++) {
     img.style.display = "block";
     scream.play();
     setTimeout(() => {img.style.display = "none";}, 6000);
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    mousePos = e;
   });
 
   //RUUUNNNN
